@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>StudyAI — Intelligent Study Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="static/css/style.css" />
+</head>
+<body>
+
+
+<div class="app">
+
+  
+  <aside class="sidebar">
+    <div class="sidebar-logo">
+      <span class="logo-icon">⬡</span>
+      <span class="logo-text">StudyAI</span>
+    </div>
+
+    <nav class="sidebar-nav">
+      <button class="nav-btn active" data-panel="chat" onclick="switchPanel('chat')">
+        <span class="nav-icon">💬</span> Chat
+      </button>
+      <button class="nav-btn" data-panel="tasks" onclick="switchPanel('tasks')">
+        <span class="nav-icon">✅</span> Tasks
+        <span class="badge" id="pending-badge">0</span>
+      </button>
+      <button class="nav-btn" data-panel="progress" onclick="switchPanel('progress')">
+        <span class="nav-icon">📊</span> Progress
+      </button>
+      <button class="nav-btn" data-panel="plan" onclick="switchPanel('plan')">
+        <span class="nav-icon">📅</span> New Plan
+      </button>
+    </nav>
+
+    
+    <div class="quick-prompts">
+      <p class="quick-label">Quick actions</p>
+      <button class="quick-btn" onclick="sendQuick('What should I study next?')">💡 What&apos;s next?</button>
+      <button class="quick-btn" onclick="sendQuick('Show my progress')">📈 My progress</button>
+      <button class="quick-btn" onclick="sendQuick('Show my tasks')">📋 My tasks</button>
+    </div>
+
+    <div class="sidebar-footer">
+      <span class="status-dot" id="status-dot"></span>
+      <span id="status-text">Connecting…</span>
+    </div>
+  </aside>
+
+  
+  <main class="main">
+
+    
+    <section class="panel active" id="panel-chat">
+      <div class="panel-header">
+        <h1 class="panel-title">Chat <span class="title-accent">Assistant</span></h1>
+        <p class="panel-sub">Ask questions, create plans, track progress</p>
+      </div>
+
+      <div class="chat-window" id="chat-window">
+        
+        <div class="message bot intro-message">
+          <div class="msg-avatar">⬡</div>
+          <div class="msg-bubble">
+            <p>👋 Hello! I'm your <strong>AI Study Assistant</strong>. Here's what I can do:</p>
+            <ul>
+              <li>📚 <strong>Answer questions</strong> — Ask me anything academic</li>
+              <li>📅 <strong>Create study plans</strong> — Tell me your subject &amp; timeline</li>
+              <li>✅ <strong>Track progress</strong> — Mark tasks done, view stats</li>
+              <li>💡 <strong>Adaptive suggestions</strong> — I'll guide what to study next</li>
+            </ul>
+            <p>What would you like to start with?</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="chat-input-area">
+        <div class="input-row">
+          <textarea
+            id="chat-input"
+            class="chat-textarea"
+            placeholder="Ask a question, or type 'study plan for Python 5 days 3h/day'…"
+            rows="1"
+            onkeydown="handleKey(event)"
+            oninput="autoResize(this)"
+          ></textarea>
+          <button class="send-btn" id="send-btn" onclick="sendMessage()">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+          </button>
+        </div>
+        <p class="input-hint">Press <kbd>Enter</kbd> to send · <kbd>Shift+Enter</kbd> for newline</p>
+      </div>
+    </section>
+
+    
+    <section class="panel" id="panel-tasks">
+      <div class="panel-header">
+        <h1 class="panel-title">My <span class="title-accent">Tasks</span></h1>
+        <p class="panel-sub">Track and complete your study sessions</p>
+      </div>
+
+      <div class="tasks-toolbar">
+        <div class="filter-group">
+          <button class="filter-btn active" onclick="filterTasks('all', this)">All</button>
+          <button class="filter-btn" onclick="filterTasks('pending', this)">Pending</button>
+          <button class="filter-btn" onclick="filterTasks('done', this)">Done</button>
+        </div>
+        <button class="refresh-btn" onclick="loadTasks()">↻ Refresh</button>
+      </div>
+
+      <div class="tasks-list" id="tasks-list">
+        <div class="empty-state">
+          <p class="empty-icon">📋</p>
+          <p>No tasks yet. Create a study plan in the Chat!</p>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="panel" id="panel-progress">
+      <div class="panel-header">
+        <h1 class="panel-title">My <span class="title-accent">Progress</span></h1>
+        <p class="panel-sub">See how far you've come</p>
+      </div>
+
+      <div id="progress-content">
+        <div class="stats-grid" id="stats-grid">
+          
+        </div>
+        <div class="progress-bar-section" id="progress-bar-section"></div>
+        <div class="suggestion-card" id="suggestion-card"></div>
+      </div>
+    </section>
+
+    
+    <section class="panel" id="panel-plan">
+      <div class="panel-header">
+        <h1 class="panel-title">Create <span class="title-accent">Study Plan</span></h1>
+        <p class="panel-sub">Fill in the details and get a personalised schedule</p>
+      </div>
+
+      <form class="plan-form" onsubmit="submitPlan(event)">
+        <div class="form-group">
+          <label class="form-label">Subject *</label>
+          <input type="text" class="form-input" id="plan-subject" placeholder="e.g. Python, Database, OS" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Days available *</label>
+            <input type="number" class="form-input" id="plan-days" min="1" max="30" placeholder="e.g. 5" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label">Hours per day *</label>
+            <input type="number" class="form-input" id="plan-hours" min="0.5" max="12" step="0.5" placeholder="e.g. 3" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Goal (optional)</label>
+          <input type="text" class="form-input" id="plan-goal" placeholder="e.g. Final exam, Interview prep" />
+        </div>
+        <div class="form-group">
+          <label class="form-label">Custom topics (optional, comma-separated)</label>
+          <input type="text" class="form-input" id="plan-topics" placeholder="e.g. Arrays, Sorting, Recursion" />
+        </div>
+        <button type="submit" class="submit-btn" id="plan-submit-btn">
+          Generate Study Plan →
+        </button>
+      </form>
+
+      <div class="plan-preview" id="plan-preview"></div>
+    </section>
+
+  </main>
+</div>
+
+<script src="static/js/app.js"></script>
+</body>
+</html>

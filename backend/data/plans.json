@@ -1,0 +1,83 @@
+{
+  "e2d9de49": {
+    "plan_id": "e2d9de49",
+    "subject": "AI",
+    "goal": "Project",
+    "days": 5,
+    "hours_per_day": 3.0,
+    "created_at": "2026-04-25T02:27:34.036484",
+    "summary": "Study AI for 5 days (3.0h/day) covering 1 topics with 1 revision day(s)."
+  },
+  "a78115d7": {
+    "plan_id": "a78115d7",
+    "subject": "OS",
+    "goal": "Final exam",
+    "days": 6,
+    "hours_per_day": 4.0,
+    "created_at": "2026-04-25T02:41:11.335090",
+    "summary": "Study OS for 6 days (4.0h/day) covering 1 topics with 2 revision day(s)."
+  },
+  "6102a953": {
+    "plan_id": "6102a953",
+    "subject": "Ai",
+    "goal": "Exam Preparation",
+    "days": 5,
+    "hours_per_day": 4.0,
+    "created_at": "2026-04-25T03:02:47.839456",
+    "summary": "Study Ai for 5 days (4.0h/day) covering 10 topics with 1 revision day(s)."
+  },
+  "45309ec1": {
+    "plan_id": "45309ec1",
+    "subject": "Ai Chapter",
+    "goal": "Exam Preparation",
+    "days": 5,
+    "hours_per_day": 4.0,
+    "created_at": "2026-04-25T03:04:45.418703",
+    "summary": "Study Ai Chapter for 5 days (4.0h/day) covering 10 topics with 1 revision day(s)."
+  },
+  "dac23aec": {
+    "plan_id": "dac23aec",
+    "subject": "Os Chapter",
+    "goal": "Exam Preparation",
+    "days": 5,
+    "hours_per_day": 4.0,
+    "created_at": "2026-04-25T03:05:34.182818",
+    "summary": "Study Os Chapter for 5 days (4.0h/day) covering 10 topics with 1 revision day(s)."
+  },
+  "54030169": {
+    "plan_id": "54030169",
+    "subject": "Python Chapter",
+    "goal": "Exam Preparation",
+    "days": 3,
+    "hours_per_day": 2.0,
+    "created_at": "2026-04-25T03:23:28.723459",
+    "summary": "A*-optimised plan: Study Python Chapter for 3 days (2.0h/day), 10 topics ordered by prerequisites and difficulty, with 1 revision day(s)."
+  },
+  "d09fdff3": {
+    "plan_id": "d09fdff3",
+    "subject": "Os",
+    "goal": "Exam Preparation",
+    "days": 5,
+    "hours_per_day": 3.0,
+    "created_at": "2026-04-25T03:26:22.260352",
+    "summary": "A*-optimised plan: Study Os for 5 days (3.0h/day), 10 topics ordered by prerequisites and difficulty, with 1 revision day(s)."
+  },
+  "6c5ef5c9": {
+    "plan_id": "6c5ef5c9",
+    "subject": "Python",
+    "goal": "Project",
+    "days": 10,
+    "hours_per_day": 6.0,
+    "created_at": "2026-04-25T15:11:18.334801",
+    "summary": "A*-optimised plan: Study Python for 10 days (6.0h/day), 1 topics ordered by prerequisites and difficulty, with 2 revision day(s)."
+  },
+  "e32e722a": {
+    "plan_id": "e32e722a",
+    "subject": "English",
+    "goal": "Exam Preparation",
+    "days": 3,
+    "hours_per_day": 4.0,
+    "created_at": "2026-04-25T15:11:55.189574",
+    "summary": "A*-optimised plan: Study English for 3 days (4.0h/day), 10 topics ordered by prerequisites and difficulty, with 1 revision day(s)."
+  }
+}
