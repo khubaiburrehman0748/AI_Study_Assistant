@@ -213,17 +213,4 @@ Data is saved in `backend/data/` as JSON:
 
 ---
 
-## ✅ Viva Q&A Preparation
-
-**Q: Why keyword-based intent detection instead of ML?**
-A: It's faster, more predictable, and sufficient for a defined set of commands. ML would add complexity without meaningful benefit for this use case.
-
-**Q: Why separate LLM calls from system logic?**
-A: Keeps the system deterministic. Plan generation and task tracking don't need LLM — they use structured logic. LLM is only used where natural language generation is genuinely needed.
-
-**Q: How does adaptive suggestion work?**
-A: It reads task completion percentage and recent study hours from JSON, then applies rule-based logic: if overloaded (4h+ recently) → suggest break; if on track → suggest next task; if near done → suggest revision.
-
-**Q: What happens if the API key is missing?**
-A: The LLM handler returns a clear error message instead of crashing. Planning, tracking, and progress still work without any API key.
 
