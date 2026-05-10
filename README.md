@@ -226,3 +226,4 @@ A: It reads task completion percentage and recent study hours from JSON, then ap
 
 **Q: What happens if the API key is missing?**
 A: The LLM handler returns a clear error message instead of crashing. Planning, tracking, and progress still work without any API key.
+
